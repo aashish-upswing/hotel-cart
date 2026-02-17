@@ -46,5 +46,10 @@
     "jest-cli": "^29.7.0",
     "puppeteer": "^24.3.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@stencil/store": "^2.2.2",
+    "flatpickr": "^4.6.13",
+    "lodash": "^4.17.23"
+  }
 }

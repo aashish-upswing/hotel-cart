@@ -1,14 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
+    <title>Hotel Cart</title>
+    <link rel="stylesheet" href="/build/cart.css" />
+    <link rel="stylesheet" href="/src/global/global.css" />
 
     <script type="module" src="/build/cart.esm.js"></script>
     <script nomodule src="/build/cart.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <div class="main-layout">
+      <button id="open-cart-btn" class="open-cart-btn">View Cart</button>
+      <hotel-cart-drawer></hotel-cart-drawer>
+      <h1>Hotel Cart</h1>
+    </div>
+
+    <script>
+      (async function () {
+        await customElements.whenDefined('hotel-cart-drawer');
+        const drawer = document.querySelector('hotel-cart-drawer');
+        const btn = document.getElementById('open-cart-btn');
+
+        if (btn && drawer) {
+          btn.addEventListener('click', async () => {
+            if (typeof drawer.open === 'function') {
+              await drawer.open();
+            } else {
+              console.warn('drawer.open is not a function yet');
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

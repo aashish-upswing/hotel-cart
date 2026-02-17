@@ -1,0 +1,114 @@
+.btn {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+
+  width: 100%;
+}
+.btn-primary:hover {
+  background-color: var(--primary-color-hover);
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: var(--gray-300);
+  cursor: pointer;
+  color: var(--gray-800);
+  border: 1px solid var(--gray-800);
+}
+.btn-secondary:hover {
+  background-color: var(--gray-400);
+}
+
+.btn-danger {
+  background-color: var(--danger-bg);
+  cursor: pointer;
+  color: var(--danger-text);
+  border: 1px solid var(--danger-text);
+}
+.btn-danger:hover {
+  background-color: var(--danger-bg-hover);
+  color: var(--danger-text-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: var(--primary-color, var(--accent-cyan));
+}
+
+.btn-tertiary {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  font-size: 10px;
+  border: 1px solid var(--gray-400);
+}
+
+.btn-square {
+  padding: 16px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.btn-action {
+  background-color: var(--danger-bg);
+  cursor: pointer;
+  color: #141414;
+  border: 2px solid var(--danger-text);
+}
+
+.btn-edit {
+  background-color: var(--gray-100);
+  cursor: pointer;
+  color: var(--gray-100);
+  border: 1px solid var(--gray-500);
+}
+
+.btn-edit:hover {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue-hover);
+}
+
+.btn-delete {
+  background-color: var(--gray-100);
+  cursor: pointer;
+  color: var(--gray-100);
+  border: 1px solid var(--gray-500);
+}
+
+.btn-delete:hover {
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}

@@ -5,7 +5,41 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { RoomData } from "./utils/data";
+export { RoomData } from "./utils/data";
 export namespace Components {
+    interface AppButton {
+        "label": string;
+        /**
+          * @default false
+         */
+        "square": boolean;
+        /**
+          * @default 'primary'
+         */
+        "variant": 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+    }
+    interface HotelCartCard {
+        /**
+          * @default false
+         */
+        "isGrouped": boolean;
+        "item": RoomData;
+    }
+    interface HotelCartDrawer {
+        "close": () => Promise<void>;
+        "open": () => Promise<void>;
+        "toggle": () => Promise<void>;
+    }
+    interface HotelCartGroup {
+        "hotelName": string;
+        /**
+          * @default []
+         */
+        "item": RoomData[];
+    }
+    interface HotelCartList {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -21,7 +55,52 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface HotelCartCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHotelCartCardElement;
+}
 declare global {
+    interface HTMLAppButtonElement extends Components.AppButton, HTMLStencilElement {
+    }
+    var HTMLAppButtonElement: {
+        prototype: HTMLAppButtonElement;
+        new (): HTMLAppButtonElement;
+    };
+    interface HTMLHotelCartCardElementEventMap {
+        "itemUpdated": RoomData;
+    }
+    interface HTMLHotelCartCardElement extends Components.HotelCartCard, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLHotelCartCardElementEventMap>(type: K, listener: (this: HTMLHotelCartCardElement, ev: HotelCartCardCustomEvent<HTMLHotelCartCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLHotelCartCardElementEventMap>(type: K, listener: (this: HTMLHotelCartCardElement, ev: HotelCartCardCustomEvent<HTMLHotelCartCardElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLHotelCartCardElement: {
+        prototype: HTMLHotelCartCardElement;
+        new (): HTMLHotelCartCardElement;
+    };
+    interface HTMLHotelCartDrawerElement extends Components.HotelCartDrawer, HTMLStencilElement {
+    }
+    var HTMLHotelCartDrawerElement: {
+        prototype: HTMLHotelCartDrawerElement;
+        new (): HTMLHotelCartDrawerElement;
+    };
+    interface HTMLHotelCartGroupElement extends Components.HotelCartGroup, HTMLStencilElement {
+    }
+    var HTMLHotelCartGroupElement: {
+        prototype: HTMLHotelCartGroupElement;
+        new (): HTMLHotelCartGroupElement;
+    };
+    interface HTMLHotelCartListElement extends Components.HotelCartList, HTMLStencilElement {
+    }
+    var HTMLHotelCartListElement: {
+        prototype: HTMLHotelCartListElement;
+        new (): HTMLHotelCartListElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +108,45 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "app-button": HTMLAppButtonElement;
+        "hotel-cart-card": HTMLHotelCartCardElement;
+        "hotel-cart-drawer": HTMLHotelCartDrawerElement;
+        "hotel-cart-group": HTMLHotelCartGroupElement;
+        "hotel-cart-list": HTMLHotelCartListElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppButton {
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "square"?: boolean;
+        /**
+          * @default 'primary'
+         */
+        "variant"?: 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+    }
+    interface HotelCartCard {
+        /**
+          * @default false
+         */
+        "isGrouped"?: boolean;
+        "item"?: RoomData;
+        "onItemUpdated"?: (event: HotelCartCardCustomEvent<RoomData>) => void;
+    }
+    interface HotelCartDrawer {
+    }
+    interface HotelCartGroup {
+        "hotelName"?: string;
+        /**
+          * @default []
+         */
+        "item"?: RoomData[];
+    }
+    interface HotelCartList {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -47,15 +161,43 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+
+    interface AppButtonAttributes {
+        "variant": 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+        "label": string;
+        "square": boolean;
+    }
+    interface HotelCartCardAttributes {
+        "isGrouped": boolean;
+    }
+    interface HotelCartGroupAttributes {
+        "hotelName": string;
+    }
+    interface MyComponentAttributes {
+        "first": string;
+        "middle": string;
+        "last": string;
+    }
+
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "app-button": Omit<AppButton, keyof AppButtonAttributes> & { [K in keyof AppButton & keyof AppButtonAttributes]?: AppButton[K] } & { [K in keyof AppButton & keyof AppButtonAttributes as `attr:${K}`]?: AppButtonAttributes[K] } & { [K in keyof AppButton & keyof AppButtonAttributes as `prop:${K}`]?: AppButton[K] };
+        "hotel-cart-card": Omit<HotelCartCard, keyof HotelCartCardAttributes> & { [K in keyof HotelCartCard & keyof HotelCartCardAttributes]?: HotelCartCard[K] } & { [K in keyof HotelCartCard & keyof HotelCartCardAttributes as `attr:${K}`]?: HotelCartCardAttributes[K] } & { [K in keyof HotelCartCard & keyof HotelCartCardAttributes as `prop:${K}`]?: HotelCartCard[K] };
+        "hotel-cart-drawer": HotelCartDrawer;
+        "hotel-cart-group": Omit<HotelCartGroup, keyof HotelCartGroupAttributes> & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes]?: HotelCartGroup[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `attr:${K}`]?: HotelCartGroupAttributes[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `prop:${K}`]?: HotelCartGroup[K] };
+        "hotel-cart-list": HotelCartList;
+        "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "app-button": LocalJSX.IntrinsicElements["app-button"] & JSXBase.HTMLAttributes<HTMLAppButtonElement>;
+            "hotel-cart-card": LocalJSX.IntrinsicElements["hotel-cart-card"] & JSXBase.HTMLAttributes<HTMLHotelCartCardElement>;
+            "hotel-cart-drawer": LocalJSX.IntrinsicElements["hotel-cart-drawer"] & JSXBase.HTMLAttributes<HTMLHotelCartDrawerElement>;
+            "hotel-cart-group": LocalJSX.IntrinsicElements["hotel-cart-group"] & JSXBase.HTMLAttributes<HTMLHotelCartGroupElement>;
+            "hotel-cart-list": LocalJSX.IntrinsicElements["hotel-cart-list"] & JSXBase.HTMLAttributes<HTMLHotelCartListElement>;
+            "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

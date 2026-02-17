@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.group-header {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.hotel-thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.reservation-count {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.group-items {
+  padding: 0 8px;
+}
+
+/*dividers between items */
+.group-items hotel-cart-card:not(:last-child) {
+  border-bottom: 1px solid var(--gray-200);
+  display: block;
+  /* Adjust margin of the card itself if needed, or handle it here */
+  margin-bottom: 0;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.group-items hotel-cart-card:last-child {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.group-footer {
+  padding: 12px;
+  background: var(--bg-color);
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.footer-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.header-price {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
