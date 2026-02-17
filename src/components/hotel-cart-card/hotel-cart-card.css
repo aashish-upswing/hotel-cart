@@ -41,6 +41,7 @@
   height: 80px;
   object-fit: cover;
   border-radius: var(--radius-md);
+  flex-shrink: 0;
 }
 
 .hotel-info {
@@ -311,4 +312,23 @@ app-button img.save-icon {
   inset: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+@media (max-width: 380px) {
+  .top-row {
+    flex-wrap: wrap;
+  }
+
+  .price {
+    width: 100%;
+    text-align: left;
+    margin-top: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price span {
+    display: inline;
+  }
 }

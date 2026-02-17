@@ -147,3 +147,10 @@
   font-size: 20px;
   color: var(--primary-color);
 }
+
+@media (max-width: 768px) {
+  .drawer {
+    width: 100%;
+    min-width: auto;
+  }
+}
