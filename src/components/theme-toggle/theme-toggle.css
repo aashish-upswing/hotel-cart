@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+}
+
+.toggle-btn {
+  background: var(--bg-white, #fff);
+  color: var(--text-primary, #000);
+  border: 1px solid var(--gray-300, #ccc);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}

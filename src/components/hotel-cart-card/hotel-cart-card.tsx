@@ -25,17 +25,36 @@ export class HotelCartCard {
   private checkInFp?: FPInstance;
   private checkOutFp?: FPInstance;
 
+  disconnectedCallback() {
+    this.destroyPickers();
+  }
+
   toggleEdit() {
     this.isEditing = !this.isEditing;
     if (this.isEditing) {
       this.draft = { ...this.item };
-      requestAnimationFrame(() => this.initPickers());
+      // Use setTimeout to ensure DOM is ready
+      setTimeout(() => this.initPickers(), 50);
+    } else {
+      this.destroyPickers();
     }
   }
 
   saveEdit() {
     if (this.draft) this.itemUpdated.emit(this.draft);
     this.isEditing = false;
+    this.destroyPickers();
+  }
+
+  destroyPickers() {
+    if (this.checkInFp) {
+      this.checkInFp.destroy();
+      this.checkInFp = undefined;
+    }
+    if (this.checkOutFp) {
+      this.checkOutFp.destroy();
+      this.checkOutFp = undefined;
+    }
   }
 
   initPickers() {

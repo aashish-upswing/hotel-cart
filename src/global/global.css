@@ -13,8 +13,8 @@
   --text-tertiary: #4a5160;
 
   /* Accent Colors */
-  --accent-blue: #b6cdff;
-  --accent-blue-hover: #1d4ed8;
+  --accent-blue: #a6ccff;
+  --accent-blue-hover: #3b82f6;
   --accent-cyan: #0084d1;
 
   /* Gray Scale */
@@ -28,7 +28,7 @@
   --gray-800: #1f2937;
 
   /* Functional Colors */
-  --danger-bg: #fee2e2;
+  --danger-bg: #ffadad;
   --danger-bg-hover: #fecaca;
   --danger-text: #d80000;
   --danger-text-dark: #b00000;
@@ -48,6 +48,128 @@
   --radius-full: 999px;
 }
 
+/* darkmode colours */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #ffffff;
+    --primary-color-hover: #e5e5e5;
+    --bg-color: #111827;
+    --bg-white: #1f2937;
+
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #d1d5db;
+
+    --gray-100: #1f2937;
+    --gray-200: #374151;
+    --gray-300: #4b5563;
+    --gray-400: #4b5563;
+    --gray-500: #9ca3af;
+    --gray-600: #6b7280;
+    --gray-700: #4b5563;
+    --gray-800: #1f2937;
+    --tag-bg: #374151;
+
+    --accent-blue: #87a3ff;
+    --accent-blue-hover: #a6ccff;
+    --danger-bg: #975e5e;
+    --danger-bg-hover: #ff8181;
+
+    --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --icon-filter: brightness(0) invert(1);
+    --icon-filter-inverse: brightness(0);
+  }
+  /* Flatpickr Dark Mode Overrides */
+  .flatpickr-calendar {
+    background: var(--bg-white) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+  .flatpickr-day {
+    color: var(--text-primary) !important;
+  }
+  .flatpickr-day.flatpickr-disabled,
+  .flatpickr-day.flatpickr-disabled:hover {
+    color: var(--text-secondary) !important;
+  }
+  .flatpickr-day:hover,
+  .flatpickr-day.prevMonthDay:hover,
+  .flatpickr-day.nextMonthDay:hover,
+  .flatpickr-day:focus {
+    background: var(--gray-200) !important;
+    border-color: var(--gray-200) !important;
+  }
+  .flatpickr-months .flatpickr-month {
+    color: var(--text-primary) !important;
+    fill: var(--text-primary) !important;
+  }
+  .flatpickr-months .flatpickr-prev-month,
+  .flatpickr-months .flatpickr-next-month {
+    color: var(--text-primary) !important;
+    fill: var(--text-primary) !important;
+  }
+  .flatpickr-current-month .flatpickr-monthDropdown-months,
+  .flatpickr-current-month input.cur-year {
+    color: var(--text-primary) !important;
+  }
+  .flatpickr-weekday {
+    color: var(--text-secondary) !important;
+  }
+  .flatpickr-time input {
+    color: var(--text-primary) !important;
+  }
+  .flatpickr-time .flatpickr-time-separator,
+  .flatpickr-time .flatpickr-am-pm {
+    color: var(--text-primary) !important;
+  }
+}
+
+/* darkmode */
+:root[data-theme='dark'] {
+  --primary-color: #ffffff;
+  --primary-color-hover: #e5e5e5;
+  --bg-color: #111827;
+  --bg-white: #1f2937;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #d1d5db;
+
+  --gray-100: #1f2937;
+  --gray-200: #374151;
+  --gray-300: #4b5563;
+  --tag-bg: #374151;
+
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --icon-filter: brightness(0) invert(1);
+}
+
+/* lightmode */
+:root[data-theme='light'] {
+  --primary-color: #000000;
+  --primary-color-hover: #4d4d4d;
+  --bg-color: #f9fafb;
+  --bg-white: #ffffff;
+
+  --text-primary: #1f2937;
+  --text-secondary: #7b8190;
+  --text-tertiary: #4a5160;
+
+  --gray-100: #f9fafb;
+  --gray-200: #e5e7eb;
+  --gray-300: #dfdfdf;
+  --tag-bg: #eef1f6;
+
+  --accent-blue: #eff6ff;
+  --accent-blue-hover: #3b82f6;
+
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --icon-filter: brightness(0);
+  --icon-filter-inverse: brightness(0) invert(1);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -57,8 +179,11 @@ body {
     -apple-system,
     sans-serif;
   background-color: var(--bg-color);
-  color: #1f2937;
+  color: var(--text-primary);
   box-sizing: border-box;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 *,
@@ -79,7 +204,7 @@ body {
   right: 16px;
   padding: 12px 24px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--bg-color); /* Inverted for contrast */
   border: none;
   border-radius: 8px;
   font-weight: 600;

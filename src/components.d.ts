@@ -54,6 +54,8 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface ThemeToggle {
+    }
 }
 export interface HotelCartCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -107,6 +109,12 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLThemeToggleElement extends Components.ThemeToggle, HTMLStencilElement {
+    }
+    var HTMLThemeToggleElement: {
+        prototype: HTMLThemeToggleElement;
+        new (): HTMLThemeToggleElement;
+    };
     interface HTMLElementTagNameMap {
         "app-button": HTMLAppButtonElement;
         "hotel-cart-card": HTMLHotelCartCardElement;
@@ -114,6 +122,7 @@ declare global {
         "hotel-cart-group": HTMLHotelCartGroupElement;
         "hotel-cart-list": HTMLHotelCartListElement;
         "my-component": HTMLMyComponentElement;
+        "theme-toggle": HTMLThemeToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -161,6 +170,8 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface ThemeToggle {
+    }
 
     interface AppButtonAttributes {
         "variant": 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
@@ -186,6 +197,7 @@ declare namespace LocalJSX {
         "hotel-cart-group": Omit<HotelCartGroup, keyof HotelCartGroupAttributes> & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes]?: HotelCartGroup[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `attr:${K}`]?: HotelCartGroupAttributes[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `prop:${K}`]?: HotelCartGroup[K] };
         "hotel-cart-list": HotelCartList;
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
+        "theme-toggle": ThemeToggle;
     }
 }
 export { LocalJSX as JSX };
@@ -198,6 +210,7 @@ declare module "@stencil/core" {
             "hotel-cart-group": LocalJSX.IntrinsicElements["hotel-cart-group"] & JSXBase.HTMLAttributes<HTMLHotelCartGroupElement>;
             "hotel-cart-list": LocalJSX.IntrinsicElements["hotel-cart-list"] & JSXBase.HTMLAttributes<HTMLHotelCartListElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "theme-toggle": LocalJSX.IntrinsicElements["theme-toggle"] & JSXBase.HTMLAttributes<HTMLThemeToggleElement>;
         }
     }
 }

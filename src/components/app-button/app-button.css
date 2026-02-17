@@ -26,7 +26,7 @@
 
 .btn-primary {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--bg-color);
 
   width: 100%;
 }
@@ -84,20 +84,21 @@
 .btn-action {
   background-color: var(--danger-bg);
   cursor: pointer;
-  color: #141414;
+  color: var(--text-primary);
   border: 2px solid var(--danger-text);
 }
 
 .btn-edit {
-  background-color: var(--gray-100);
+  background-color: var(--bg-white);
   cursor: pointer;
-  color: var(--gray-100);
-  border: 1px solid var(--gray-500);
+  color: var(--text-primary);
+  border: 1px solid var(--gray-300);
 }
 
 .btn-edit:hover {
   background-color: var(--accent-blue);
   border-color: var(--accent-blue-hover);
+  color: var(--accent-blue-hover);
 }
 
 .btn-delete {

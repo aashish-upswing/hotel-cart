@@ -113,12 +113,12 @@ h3 {
 app-button img {
   width: 16px;
   height: 16px;
-  filter: brightness(0);
+  filter: var(--icon-filter, brightness(0));
   vertical-align: middle;
 }
 
 app-button img.save-icon {
-  filter: brightness(0) invert(1);
+  filter: var(--icon-filter-inverse, brightness(0) invert(1));
 }
 
 .action-position {
@@ -146,11 +146,11 @@ app-button img.save-icon {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #f9fafb;
+  background: var(--gray-100);
   padding: 16px;
   border-radius: 12px;
   margin-top: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--gray-200);
 }
 
 .edit-section .section h3 {
@@ -159,7 +159,7 @@ app-button img.save-icon {
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 12px 0;
   text-transform: none;
   letter-spacing: normal;
@@ -168,6 +168,7 @@ app-button img.save-icon {
 .edit-section .section h3 img {
   width: 16px;
   height: 16px;
+  filter: var(--icon-filter, brightness(0));
 }
 
 .date-inputs {
@@ -184,15 +185,15 @@ app-button img.save-icon {
   display: block;
   font-size: 10px;
   font-weight: 700;
-  color: #9aa1ad;
+  color: var(--text-secondary);
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .input-wrapper {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-white);
+  border: 1px solid var(--gray-200);
   border-radius: 8px;
   padding: 10px 12px;
   display: flex;
@@ -204,18 +205,19 @@ app-button img.save-icon {
 }
 
 .input-wrapper:hover {
-  border-color: #d1d5db;
+  border-color: var(--gray-300);
 }
 
 .input-wrapper img {
   width: 16px;
   height: 16px;
   opacity: 0.5;
+  filter: var(--icon-filter, brightness(0));
 }
 
 .input-wrapper span {
   font-size: 14px;
-  color: #374151;
+  color: var(--text-tertiary);
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -235,14 +237,14 @@ app-button img.save-icon {
 }
 
 .arrow {
-  color: #9aa1ad;
+  color: var(--text-secondary);
   padding-top: 20px;
   font-size: 14px;
 }
 
 .guest-counter {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-white);
+  border: 1px solid var(--gray-200);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -253,7 +255,7 @@ app-button img.save-icon {
 }
 
 .guest-counter:hover {
-  border-color: #d1d5db;
+  border-color: var(--gray-300);
 }
 
 .guest-counter button {
@@ -262,7 +264,7 @@ app-button img.save-icon {
   width: 32px;
   height: 32px;
   font-size: 18px;
-  color: #9aa1ad;
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -272,14 +274,14 @@ app-button img.save-icon {
 }
 
 .guest-counter button:hover {
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--text-tertiary);
+  background: var(--gray-100);
 }
 
 .guest-counter span {
   font-weight: 600;
   font-size: 16px;
-  color: #1f2937;
+  color: var(--text-primary);
   text-align: center;
   min-width: 24px;
 }
