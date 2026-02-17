@@ -19,6 +19,7 @@ export class HotelCartCard {
   @State() draft: RoomData;
 
   @Event() itemUpdated: EventEmitter<RoomData>;
+  @Event() itemDeleted: EventEmitter<string>;
 
   private checkInInput!: HTMLInputElement;
   private checkOutInput!: HTMLInputElement;
@@ -44,6 +45,12 @@ export class HotelCartCard {
     if (this.draft) this.itemUpdated.emit(this.draft);
     this.isEditing = false;
     this.destroyPickers();
+  }
+
+  handleDelete() {
+    if (this.item?.id) {
+      this.itemDeleted.emit(this.item.id);
+    }
   }
 
   destroyPickers() {
@@ -158,7 +165,7 @@ export class HotelCartCard {
                   {this.isEditing ? <img class="save-icon" src={getAssetPath('assets/tick-circle.svg')} /> : <img src={getAssetPath('assets/edit.svg')} />}
                 </app-button>
 
-                <app-button variant="delete" square>
+                <app-button variant="delete" square onClick={() => this.handleDelete()}>
                   <img src={getAssetPath('assets/delete.svg')} />
                 </app-button>
               </div>

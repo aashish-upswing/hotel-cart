@@ -94,3 +94,7 @@ export const cartsData = state.rooms;
 export function updateRoom(updated: RoomData) {
   cartsStore.rooms = cartsStore.rooms.map(room => (room.id === updated.id ? { ...updated } : room));
 }
+
+export function deleteRoom(id: string) {
+  cartsStore.rooms = cartsStore.rooms.filter(r => r.id !== id);
+}

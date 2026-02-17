@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { RoomData, updateRoom } from '../../utils/data';
+import { RoomData, updateRoom, deleteRoom } from '../../utils/data';
 
 @Component({
   tag: 'hotel-cart-group',
@@ -30,7 +30,7 @@ export class HotelCartGroup {
 
         <div class="group-items">
           {this.item.map(room => (
-            <hotel-cart-card item={room} isGrouped={true} onItemUpdated={(e: CustomEvent<RoomData>) => updateRoom(e.detail)}></hotel-cart-card>
+            <hotel-cart-card item={room} isGrouped={true} onItemUpdated={e => updateRoom(e.detail)} onItemDeleted={e => deleteRoom(e.detail)}></hotel-cart-card>
           ))}
         </div>
 

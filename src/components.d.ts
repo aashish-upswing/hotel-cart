@@ -70,6 +70,7 @@ declare global {
     };
     interface HTMLHotelCartCardElementEventMap {
         "itemUpdated": RoomData;
+        "itemDeleted": string;
     }
     interface HTMLHotelCartCardElement extends Components.HotelCartCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLHotelCartCardElementEventMap>(type: K, listener: (this: HTMLHotelCartCardElement, ev: HotelCartCardCustomEvent<HTMLHotelCartCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -143,6 +144,7 @@ declare namespace LocalJSX {
          */
         "isGrouped"?: boolean;
         "item"?: RoomData;
+        "onItemDeleted"?: (event: HotelCartCardCustomEvent<string>) => void;
         "onItemUpdated"?: (event: HotelCartCardCustomEvent<RoomData>) => void;
     }
     interface HotelCartDrawer {
