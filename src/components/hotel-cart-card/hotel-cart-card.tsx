@@ -63,7 +63,24 @@ export class HotelCartCard {
         defaultDate: this.draft.checkIn,
         dateFormat: 'Y-m-d',
         minDate: 'today',
-        onChange: d => d[0] && this.setDate('checkIn', d[0].toISOString().slice(0, 10)),
+        onChange: (selectedDates, dateStr) => {
+          this.setDate('checkIn', dateStr);
+
+          if (this.checkOutFp) {
+            this.checkOutFp.set('minDate', dateStr);
+
+            if (dateStr >= this.draft.checkOut) {
+              const checkInDate = selectedDates[0];
+              const nextDay = new Date(checkInDate);
+              nextDay.setDate(checkInDate.getDate() + 1);
+
+              const nextDayStr = this.checkOutFp.formatDate(nextDay, 'Y-m-d');
+
+              this.checkOutFp.setDate(nextDayStr);
+              this.setDate('checkOut', nextDayStr);
+            }
+          }
+        },
       });
     }
 
@@ -71,8 +88,8 @@ export class HotelCartCard {
       this.checkOutFp = flatpickr(this.checkOutInput, {
         defaultDate: this.draft.checkOut,
         dateFormat: 'Y-m-d',
-        minDate: 'today',
-        onChange: d => d[0] && this.setDate('checkOut', d[0].toISOString().slice(0, 10)),
+        minDate: this.draft.checkIn,
+        onChange: (_, dateStr) => this.setDate('checkOut', dateStr),
       });
     }
   }

@@ -193,9 +193,9 @@ app-button img.save-icon {
 }
 
 .input-wrapper {
-  background: var(--bg-white);
+  background: var(--gray-200);
   border: 1px solid var(--gray-200);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 10px 12px;
   display: flex;
   align-items: center;
@@ -212,13 +212,13 @@ app-button img.save-icon {
 .input-wrapper img {
   width: 16px;
   height: 16px;
-  opacity: 0.5;
+  opacity: 0.7;
   filter: var(--icon-filter, brightness(0));
 }
 
 .input-wrapper span {
   font-size: 14px;
-  color: var(--text-tertiary);
+  color: var(--text-primary);
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -238,7 +238,7 @@ app-button img.save-icon {
 }
 
 .arrow {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   padding-top: 20px;
   font-size: 14px;
 }
@@ -276,7 +276,7 @@ app-button img.save-icon {
 
 .guest-counter button:hover {
   color: var(--text-tertiary);
-  background: var(--gray-100);
+  background: var(--gray-300);
 }
 
 .guest-counter span {
@@ -285,26 +285,6 @@ app-button img.save-icon {
   color: var(--text-primary);
   text-align: center;
   min-width: 24px;
-}
-
-/* Save Button */
-.save-btn {
-  align-self: flex-end;
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s;
-  width: auto;
-  margin-top: 0;
-}
-
-.save-btn:hover {
-  background: #1d4ed8;
 }
 
 .input-wrapper input {
