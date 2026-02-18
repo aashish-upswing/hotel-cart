@@ -1,15 +1,30 @@
-import { Component, Host, h, Prop } from '@stencil/core';
-import { RoomData, updateRoom, deleteRoom } from '../../utils/data';
+import { Component, Host, Prop, h } from '@stencil/core';
+import { RoomData, deleteRoom, updateRoom } from '../../utils/data';
 
+/**
+ * Hotel Cart Group Component
+ *
+ * Groups multiple reservations from the same hotel into a single card container.
+ * Displays a summary header, the list of rooms, and a total subtotal footer.
+ */
 @Component({
   tag: 'hotel-cart-group',
   styleUrl: 'hotel-cart-group.css',
   shadow: true,
 })
 export class HotelCartGroup {
+  // 1. Props
+  /**
+   * List of rooms belonging to this hotel group.
+   */
   @Prop() item: RoomData[] = [];
+
+  /**
+   * The name of the hotel (redundant if checking first item, but explicit prop).
+   */
   @Prop() hotelName: string;
 
+  // 2. Render
   render() {
     if (!this.item || this.item.length === 0) return null;
 
@@ -18,6 +33,7 @@ export class HotelCartGroup {
 
     return (
       <Host>
+        {/* Group Header */}
         <div class="group-header">
           <img src={firstItem.imageUrl} alt={firstItem.hotelName} class="hotel-thumbnail" />
           <div class="header-info">
@@ -28,12 +44,19 @@ export class HotelCartGroup {
           </div>
         </div>
 
+        {/* Room List */}
         <div class="group-items">
           {this.item.map(room => (
-            <hotel-cart-card item={room} isGrouped={true} onItemUpdated={e => updateRoom(e.detail)} onItemDeleted={e => deleteRoom(e.detail)}></hotel-cart-card>
+            <hotel-cart-card
+              item={room}
+              isGrouped={true}
+              onItemUpdated={e => updateRoom(e.detail)} // In a real app, emit event up instead of direct store call
+              onItemDeleted={e => deleteRoom(e.detail)}
+            />
           ))}
         </div>
 
+        {/* Group Footer (Multi-item only) */}
         {this.item.length > 1 && (
           <div class="group-footer">
             <span class="footer-label">Hotel Subtotal</span>

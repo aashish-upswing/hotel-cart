@@ -5,39 +5,94 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonType, ButtonVariant } from "./components/app-button/app-button";
 import { RoomData } from "./utils/data";
+export { ButtonType, ButtonVariant } from "./components/app-button/app-button";
 export { RoomData } from "./utils/data";
 export namespace Components {
     interface AppButton {
+        /**
+          * If true, the button will be disabled and non-interactive.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The text to display inside the button.
+         */
         "label": string;
         /**
+          * If true, the button will be square-shaped (useful for icon-only buttons).
           * @default false
          */
         "square": boolean;
         /**
+          * The HTML type attribute of the button.
+          * @default 'button'
+         */
+        "type": ButtonType;
+        /**
+          * The visual style of the button.
           * @default 'primary'
          */
-        "variant": 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+        "variant": ButtonVariant;
     }
+    /**
+     * Hotel Cart Card Component
+     * Displays a summary of a selected hotel room in the cart.
+     * allow editing dates, guests, and removing the item.
+     */
     interface HotelCartCard {
         /**
+          * Whether the card is part of a group (e.g. multiple rooms in same hotel). If true, header info is hidden.
           * @default false
          */
         "isGrouped": boolean;
+        /**
+          * The hotel room data to display.
+         */
         "item": RoomData;
     }
+    /**
+     * Hotel Cart Drawer Component
+     * A slide-out drawer that displays the current items in the cart,
+     * shows a subtotal summary, and provides a checkout action.
+     */
     interface HotelCartDrawer {
+        /**
+          * Closes the cart drawer.
+         */
         "close": () => Promise<void>;
+        /**
+          * Opens the cart drawer.
+         */
         "open": () => Promise<void>;
+        /**
+          * Toggles the open state of the drawer.
+         */
         "toggle": () => Promise<void>;
     }
+    /**
+     * Hotel Cart Group Component
+     * Groups multiple reservations from the same hotel into a single card container.
+     * Displays a summary header, the list of rooms, and a total subtotal footer.
+     */
     interface HotelCartGroup {
+        /**
+          * The name of the hotel (redundant if checking first item, but explicit prop).
+         */
         "hotelName": string;
         /**
+          * List of rooms belonging to this hotel group.
           * @default []
          */
         "item": RoomData[];
     }
+    /**
+     * Hotel Cart List Component
+     * Displays a list of hotel rooms currently in the cart.
+     * If the cart is empty, shows a placeholder state.
+     * Groups rooms by hotel name.
+     */
     interface HotelCartList {
     }
     interface ThemeToggle {
@@ -58,6 +113,11 @@ declare global {
         "itemUpdated": RoomData;
         "itemDeleted": string;
     }
+    /**
+     * Hotel Cart Card Component
+     * Displays a summary of a selected hotel room in the cart.
+     * allow editing dates, guests, and removing the item.
+     */
     interface HTMLHotelCartCardElement extends Components.HotelCartCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLHotelCartCardElementEventMap>(type: K, listener: (this: HTMLHotelCartCardElement, ev: HotelCartCardCustomEvent<HTMLHotelCartCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -72,18 +132,34 @@ declare global {
         prototype: HTMLHotelCartCardElement;
         new (): HTMLHotelCartCardElement;
     };
+    /**
+     * Hotel Cart Drawer Component
+     * A slide-out drawer that displays the current items in the cart,
+     * shows a subtotal summary, and provides a checkout action.
+     */
     interface HTMLHotelCartDrawerElement extends Components.HotelCartDrawer, HTMLStencilElement {
     }
     var HTMLHotelCartDrawerElement: {
         prototype: HTMLHotelCartDrawerElement;
         new (): HTMLHotelCartDrawerElement;
     };
+    /**
+     * Hotel Cart Group Component
+     * Groups multiple reservations from the same hotel into a single card container.
+     * Displays a summary header, the list of rooms, and a total subtotal footer.
+     */
     interface HTMLHotelCartGroupElement extends Components.HotelCartGroup, HTMLStencilElement {
     }
     var HTMLHotelCartGroupElement: {
         prototype: HTMLHotelCartGroupElement;
         new (): HTMLHotelCartGroupElement;
     };
+    /**
+     * Hotel Cart List Component
+     * Displays a list of hotel rooms currently in the cart.
+     * If the cart is empty, shows a placeholder state.
+     * Groups rooms by hotel name.
+     */
     interface HTMLHotelCartListElement extends Components.HotelCartList, HTMLStencilElement {
     }
     var HTMLHotelCartListElement: {
@@ -107,43 +183,95 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppButton {
+        /**
+          * If true, the button will be disabled and non-interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The text to display inside the button.
+         */
         "label"?: string;
         /**
+          * If true, the button will be square-shaped (useful for icon-only buttons).
           * @default false
          */
         "square"?: boolean;
         /**
+          * The HTML type attribute of the button.
+          * @default 'button'
+         */
+        "type"?: ButtonType;
+        /**
+          * The visual style of the button.
           * @default 'primary'
          */
-        "variant"?: 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+        "variant"?: ButtonVariant;
     }
+    /**
+     * Hotel Cart Card Component
+     * Displays a summary of a selected hotel room in the cart.
+     * allow editing dates, guests, and removing the item.
+     */
     interface HotelCartCard {
         /**
+          * Whether the card is part of a group (e.g. multiple rooms in same hotel). If true, header info is hidden.
           * @default false
          */
         "isGrouped"?: boolean;
+        /**
+          * The hotel room data to display.
+         */
         "item"?: RoomData;
+        /**
+          * Emitted when the delete action is confirmed.
+         */
         "onItemDeleted"?: (event: HotelCartCardCustomEvent<string>) => void;
+        /**
+          * Emitted when the item details are updated (check-in, check-out, adults).
+         */
         "onItemUpdated"?: (event: HotelCartCardCustomEvent<RoomData>) => void;
     }
+    /**
+     * Hotel Cart Drawer Component
+     * A slide-out drawer that displays the current items in the cart,
+     * shows a subtotal summary, and provides a checkout action.
+     */
     interface HotelCartDrawer {
     }
+    /**
+     * Hotel Cart Group Component
+     * Groups multiple reservations from the same hotel into a single card container.
+     * Displays a summary header, the list of rooms, and a total subtotal footer.
+     */
     interface HotelCartGroup {
+        /**
+          * The name of the hotel (redundant if checking first item, but explicit prop).
+         */
         "hotelName"?: string;
         /**
+          * List of rooms belonging to this hotel group.
           * @default []
          */
         "item"?: RoomData[];
     }
+    /**
+     * Hotel Cart List Component
+     * Displays a list of hotel rooms currently in the cart.
+     * If the cart is empty, shows a placeholder state.
+     * Groups rooms by hotel name.
+     */
     interface HotelCartList {
     }
     interface ThemeToggle {
     }
 
     interface AppButtonAttributes {
-        "variant": 'primary' | 'secondary' | 'tertiary' | 'action' | 'danger' | 'outline' | 'edit' | 'delete';
+        "variant": ButtonVariant;
         "label": string;
         "square": boolean;
+        "disabled": boolean;
+        "type": ButtonType;
     }
     interface HotelCartCardAttributes {
         "isGrouped": boolean;
@@ -166,9 +294,30 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-button": LocalJSX.IntrinsicElements["app-button"] & JSXBase.HTMLAttributes<HTMLAppButtonElement>;
+            /**
+             * Hotel Cart Card Component
+             * Displays a summary of a selected hotel room in the cart.
+             * allow editing dates, guests, and removing the item.
+             */
             "hotel-cart-card": LocalJSX.IntrinsicElements["hotel-cart-card"] & JSXBase.HTMLAttributes<HTMLHotelCartCardElement>;
+            /**
+             * Hotel Cart Drawer Component
+             * A slide-out drawer that displays the current items in the cart,
+             * shows a subtotal summary, and provides a checkout action.
+             */
             "hotel-cart-drawer": LocalJSX.IntrinsicElements["hotel-cart-drawer"] & JSXBase.HTMLAttributes<HTMLHotelCartDrawerElement>;
+            /**
+             * Hotel Cart Group Component
+             * Groups multiple reservations from the same hotel into a single card container.
+             * Displays a summary header, the list of rooms, and a total subtotal footer.
+             */
             "hotel-cart-group": LocalJSX.IntrinsicElements["hotel-cart-group"] & JSXBase.HTMLAttributes<HTMLHotelCartGroupElement>;
+            /**
+             * Hotel Cart List Component
+             * Displays a list of hotel rooms currently in the cart.
+             * If the cart is empty, shows a placeholder state.
+             * Groups rooms by hotel name.
+             */
             "hotel-cart-list": LocalJSX.IntrinsicElements["hotel-cart-list"] & JSXBase.HTMLAttributes<HTMLHotelCartListElement>;
             "theme-toggle": LocalJSX.IntrinsicElements["theme-toggle"] & JSXBase.HTMLAttributes<HTMLThemeToggleElement>;
         }

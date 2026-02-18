@@ -1,3 +1,6 @@
+/* =========================================
+   1. GLOBAL / HOST STYLES
+   ========================================= */
 * {
   box-sizing: border-box;
   font-family:
@@ -15,6 +18,9 @@
   position: relative;
 }
 
+/* =========================================
+   2. MAIN CARD STRUCTURE
+   ========================================= */
 .hotel-card {
   width: 100%;
   max-width: 700px;
@@ -24,13 +30,7 @@
   padding: 8px;
   border-radius: var(--radius-lg);
   position: relative;
-}
-
-.card-main {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  width: 100%;
+  overflow: visible;
 }
 
 /* Grouped state overrides */
@@ -41,6 +41,13 @@
   padding: 0;
 }
 
+.card-main {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
 .hotel-img {
   width: 80px;
   height: 80px;
@@ -49,6 +56,9 @@
   flex-shrink: 0;
 }
 
+/* =========================================
+   3. INFO & LAYOUT (Rows/Cols)
+   ========================================= */
 .hotel-info {
   flex: 1;
   display: flex;
@@ -62,6 +72,17 @@
   align-items: flex-start;
 }
 
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+/* =========================================
+   4. TYPOGRAPHY
+   ========================================= */
 h3 {
   margin: 0;
   font-size: 14px;
@@ -83,29 +104,22 @@ h3 {
 
 .price {
   font-weight: 700;
-  font-style: bold;
-  font-size: 16px;
+  font-size: 24px;
   text-align: right;
   color: var(--primary-color);
 }
 
 .price span {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--primary-color);
   font-weight: 500;
   letter-spacing: 0.4px;
 }
 
-.bottom-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 2px;
-  align-items: center;
-}
-
+/* =========================================
+   5. ACTIONS & TAGS
+   ========================================= */
 .tags {
   display: flex;
   gap: 4px;
@@ -116,9 +130,17 @@ h3 {
   display: flex;
 }
 
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* Icon overrides for nested buttons */
 app-button img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   filter: var(--icon-filter, brightness(0));
   vertical-align: middle;
 }
@@ -127,27 +149,9 @@ app-button img.save-icon {
   filter: var(--icon-filter-inverse, brightness(0) invert(1));
 }
 
-.action-position {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: end;
-}
-
-.action-position app-button img {
-  width: 16px;
-  height: 16px;
-}
-
-.date-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 6px;
-}
-
-/* Edit Section Styles */
-
+/* =========================================
+   6. EDIT MODE CONTAINER
+   ========================================= */
 .edit-section {
   display: flex;
   flex-direction: column;
@@ -163,20 +167,23 @@ app-button img.save-icon {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--accent-blue-hover);
   margin: 0 0 12px 0;
   text-transform: none;
   letter-spacing: normal;
 }
 
 .edit-section .section h3 img {
-  width: 16px;
-  height: 16px;
-  filter: var(--icon-filter, brightness(0));
+  width: 24px;
+  height: 24px;
+  filter: invert(34%) sepia(98%) saturate(3061%) hue-rotate(201deg) brightness(101%) contrast(106%);
 }
 
+/* =========================================
+   7. EDIT INPUTS (DATES)
+   ========================================= */
 .date-inputs {
   display: flex;
   align-items: center;
@@ -191,7 +198,7 @@ app-button img.save-icon {
   display: block;
   font-size: 10px;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -230,32 +237,42 @@ app-button img.save-icon {
   text-overflow: ellipsis;
 }
 
-/* Hide default date input but keep it clickable over the wrapper */
-.input-wrapper input[type='date'] {
+.input-wrapper input {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   opacity: 0;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
   z-index: 1;
 }
 
 .arrow {
   color: var(--text-primary);
-  padding-top: 20px;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  padding-top: 4px;
+  justify-content: center;
+  margin-top: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
 }
 
+/* =========================================
+   8. GUEST COUNTER
+   ========================================= */
 .guest-counter {
   background: var(--bg-white);
   border: 1px solid var(--gray-200);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 140px;
+  width: 100px;
   padding: 4px;
   transition: border-color 0.2s;
 }
@@ -276,7 +293,7 @@ app-button img.save-icon {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  border-radius: 6px;
+  border-radius: var(--radius-lg);
 }
 
 .guest-counter button:hover {
@@ -292,60 +309,36 @@ app-button img.save-icon {
   min-width: 24px;
 }
 
-.input-wrapper input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-@media (max-width: 380px) {
-  .top-row {
-    flex-wrap: wrap;
-  }
-
-  .price {
-    width: 100%;
-    text-align: left;
-    margin-top: 4px;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-  }
-
-  .price span {
-    display: inline;
-  }
-}
-
-/* Delete Popover Styles */
+/* =========================================
+   9. DELETE POPOVER
+   ========================================= */
 .delete-wrapper {
   position: relative;
 }
 
 .delete-popover {
   position: absolute;
-  top: -350%;
+  top: 110%;
   right: 0;
-  width: 220px;
+  width: 240px;
   background: var(--bg-white);
   padding: 16px;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
+  filter: drop-shadow(var(--shadow-card));
   z-index: 100;
-  border: 1px solid var(--gray-200);
   animation: popover-in 0.2s ease-in;
 }
 
-@keyframes popover-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.delete-popover::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-white);
+  transform: rotate(45deg);
 }
 
 .delete-popover p {
@@ -394,4 +387,40 @@ app-button img.save-icon {
 .confirm-btn:hover {
   background: var(--danger-bg-hover);
   color: var(--danger-text-dark);
+}
+
+/* =========================================
+   10. KEYFRAMES
+   ========================================= */
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   11. MEDIA QUERIES
+   ========================================= */
+@media (max-width: 380px) {
+  .top-row {
+    flex-wrap: wrap;
+  }
+
+  .price {
+    width: 100%;
+    text-align: left;
+    margin-top: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price span {
+    display: inline;
+  }
 }

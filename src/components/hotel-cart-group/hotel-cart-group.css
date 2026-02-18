@@ -1,24 +1,30 @@
+/* =========================================
+   1. HOST CONTAINER
+   ========================================= */
 :host {
   display: block;
   background: var(--bg-white);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 16px;
   border: 1px solid var(--gray-200);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* =========================================
+   2. GROUP HEADER
+   ========================================= */
 .group-header {
-  padding: 8px;
+  padding: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   border-bottom: 1px solid var(--gray-200);
 }
 
 .hotel-thumbnail {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-sm);
   object-fit: cover;
 }
@@ -41,15 +47,24 @@
   margin-top: 2px;
 }
 
+.header-price {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* =========================================
+   3. GROUP ITEMS LIST
+   ========================================= */
 .group-items {
   padding: 0 8px;
 }
 
-/*dividers between items */
+/* Divider lines between items */
 .group-items hotel-cart-card:not(:last-child) {
   border-bottom: 1px solid var(--gray-200);
   display: block;
-  /* Adjust margin of the card itself if needed, or handle it here */
   margin-bottom: 0;
   padding-bottom: 8px;
   padding-top: 8px;
@@ -60,6 +75,9 @@
   padding-bottom: 8px;
 }
 
+/* =========================================
+   4. GROUP FOOTER
+   ========================================= */
 .group-footer {
   padding: 12px;
   background: var(--bg-color);
@@ -67,6 +85,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: inherit;
 }
 
 .footer-label {
@@ -78,12 +97,5 @@
 .footer-price {
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary);
-}
-
-.header-price {
-  margin-left: auto;
-  font-size: 16px;
-  font-weight: 600;
   color: var(--text-primary);
 }

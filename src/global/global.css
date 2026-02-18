@@ -1,23 +1,36 @@
 @import 'flatpickr/dist/flatpickr.min.css';
 
+/**
+ * Global CSS Variables and Styles
+ * organized by category: Colors, Typography, Spacing, Shadows, etc.
+ */
+
 :root {
-  /* Core Colors */
+  /* =========================================
+     Color Palette: Core
+     ========================================= */
   --primary-color: #000000;
   --primary-color-hover: #4d4d4d;
   --bg-color: #f9fafb;
   --bg-white: #ffffff;
 
-  /* Text Colors */
+  /* =========================================
+     Color Palette: Text
+     ========================================= */
   --text-primary: #333333;
   --text-secondary: #7b8190;
   --text-tertiary: #4a5160;
 
-  /* Accent Colors */
+  /* =========================================
+     Color Palette: Accents
+     ========================================= */
   --accent-blue: #a6ccff;
   --accent-blue-hover: #3b82f6;
   --accent-cyan: #0084d1;
 
-  /* Gray Scale */
+  /* =========================================
+     Color Palette: Neutrals / Grays
+     ========================================= */
   --gray-100: #f9f9f9;
   --gray-200: #e5e5e5;
   --gray-300: #dfdfdf;
@@ -27,38 +40,59 @@
   --gray-700: #4b4b4b;
   --gray-800: #1f1f1f;
 
-  /* Functional Colors */
+  /* =========================================
+     Color Palette: Functional (States)
+     ========================================= */
   --danger-bg: #ffadad;
   --danger-bg-hover: #fecaca;
   --danger-text: #d80000;
   --danger-text-dark: #b00000;
 
-  /* Component Specific */
+  /* =========================================
+     Component Specific Variables
+     ========================================= */
   --tag-bg: #eef1f6;
 
-  /* Shadows */
+  /* =========================================
+     Shadows & Elevation
+     ========================================= */
   --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.08);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-  /* Border Radius */
+  /* =========================================
+     Border Radius
+     ========================================= */
   --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 999px;
+
+  /* =========================================
+     Filter Effects (Icons)
+     ========================================= */
+  --icon-filter: brightness(0);
+  --icon-filter-inverse: brightness(0) invert(1);
 }
 
-/* darkmode colours */
+/* =========================================
+   Theme: Dark Mode (System Preference)
+   ========================================= */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Colors */
     --primary-color: #ffffff;
     --primary-color-hover: #e5e5e5;
     --bg-color: #1a1a1a;
     --bg-white: #292929;
 
+    /* Text */
     --text-primary: #f9fafb;
     --text-secondary: #9ca3af;
     --text-tertiary: #d1d5db;
+
+    /* Grays */
     --gray-100: #242424;
     --gray-200: #272727;
     --gray-300: #222222;
@@ -67,20 +101,24 @@
     --gray-600: #737373;
     --gray-700: #525252;
     --gray-800: #262626;
-    --tag-bg: #404040;
 
+    /* Accents & Functional */
     --accent-blue: #6177bee1;
     --accent-blue-hover: #a6ccff;
     --danger-bg: #ffd4d4;
     --danger-bg-hover: #ff8d8d;
     --danger-text: #440000;
     --danger-text-dark: #440000;
+    --tag-bg: #404040;
 
+    /* Shadows & Effects */
     --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.3);
+
     --icon-filter: brightness(0) invert(1);
     --icon-filter-inverse: brightness(0);
   }
+
   /* Flatpickr Dark Mode Overrides */
   .flatpickr-calendar {
     background: var(--bg-white) !important;
@@ -125,7 +163,9 @@
   }
 }
 
-/* darkmode */
+/* =========================================
+   Theme: Explicit Dark Mode (Data Attribute)
+   ========================================= */
 :root[data-theme='dark'] {
   --primary-color: #ffffff;
   --primary-color-hover: #e5e5e5;
@@ -142,14 +182,16 @@
   --tag-bg: #404040;
 
   --shadow-card: 0 4px 14px rgb(0, 0, 0, 1);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.3);
   --icon-filter: brightness(0) invert(1);
 
   --danger-bg: #ff4444;
   --danger-bg-hover: #ff2222;
 }
 
-/* lightmode */
+/* =========================================
+   Theme: Explicit Light Mode (Data Attribute)
+   ========================================= */
 :root[data-theme='light'] {
   --primary-color: #000000;
   --primary-color-hover: #4d4d4d;
@@ -169,11 +211,15 @@
   --accent-blue-hover: #3b82f6;
 
   --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+
   --icon-filter: brightness(0);
   --icon-filter-inverse: brightness(0) invert(1);
 }
 
+/* =========================================
+   Base / Reset Styles
+   ========================================= */
 body {
   margin: 0;
   padding: 0;
@@ -196,6 +242,9 @@ body {
   box-sizing: border-box;
 }
 
+/* =========================================
+   Global Layout Helpers
+   ========================================= */
 .main-layout {
   display: flex;
   flex-direction: column;
@@ -210,7 +259,7 @@ body {
   right: 16px;
   padding: 12px 24px;
   background-color: var(--primary-color);
-  color: var(--bg-color); /* Inverted for contrast */
+  color: var(--bg-color); /* Inverted for high contrast */
   border: none;
   border-radius: 8px;
   font-weight: 600;

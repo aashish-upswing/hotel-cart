@@ -1,3 +1,6 @@
+/* =========================================
+   1. HOST & LAYOUT
+   ========================================= */
 :host {
   position: fixed;
   top: 0;
@@ -13,6 +16,9 @@
   pointer-events: auto;
 }
 
+/* =========================================
+   2. BACKDROP
+   ========================================= */
 .backdrop {
   position: absolute;
   top: 0;
@@ -28,6 +34,9 @@
   opacity: 1;
 }
 
+/* =========================================
+   3. DRAWER CONTAINER
+   ========================================= */
 .drawer {
   position: absolute;
   top: 0;
@@ -47,6 +56,9 @@
   transform: translateX(0);
 }
 
+/* =========================================
+   4. DRAWER HEADER
+   ========================================= */
 .header {
   padding: 12px;
   background: var(--bg-white);
@@ -96,12 +108,16 @@
   cursor: pointer;
   padding: 0;
 }
+
 .close-btn img {
   width: 16px;
   height: 16px;
   filter: var(--icon-filter, brightness(0));
 }
 
+/* =========================================
+   5. DRAWER CONTENT
+   ========================================= */
 .content {
   flex: 1;
   overflow-y: auto;
@@ -111,6 +127,9 @@
   gap: 8px;
 }
 
+/* =========================================
+   6. DRAWER FOOTER & SUMMARY
+   ========================================= */
 .footer {
   background: var(--bg-white);
   padding: 8px;
@@ -148,6 +167,9 @@
   color: var(--primary-color);
 }
 
+/* =========================================
+   7. MEDIA QUERIES
+   ========================================= */
 @media (max-width: 768px) {
   .drawer {
     width: 100%;

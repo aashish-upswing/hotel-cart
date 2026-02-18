@@ -25,13 +25,13 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: var(--accent-blue-hover);
   color: var(--bg-color);
 
   width: 100%;
 }
 .btn-primary:hover {
-  background-color: var(--primary-color-hover);
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -67,11 +67,8 @@
   color: var(--text-primary);
   border-radius: var(--radius-md);
   padding: 6px 10px;
-  font-size: 10px;
-}
-
-.btn-tertiary:hover {
-  box-shadow: var(--shadow-card);
+  font-size: 12px;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-square {
@@ -115,4 +112,12 @@
   background-color: var(--danger-bg);
   color: var(--danger-text);
   border-color: var(--danger-text);
+}
+
+/* Disabled State */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.5);
 }
