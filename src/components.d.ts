@@ -40,20 +40,6 @@ export namespace Components {
     }
     interface HotelCartList {
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface ThemeToggle {
     }
 }
@@ -104,12 +90,6 @@ declare global {
         prototype: HTMLHotelCartListElement;
         new (): HTMLHotelCartListElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLThemeToggleElement extends Components.ThemeToggle, HTMLStencilElement {
     }
     var HTMLThemeToggleElement: {
@@ -122,7 +102,6 @@ declare global {
         "hotel-cart-drawer": HTMLHotelCartDrawerElement;
         "hotel-cart-group": HTMLHotelCartGroupElement;
         "hotel-cart-list": HTMLHotelCartListElement;
-        "my-component": HTMLMyComponentElement;
         "theme-toggle": HTMLThemeToggleElement;
     }
 }
@@ -158,20 +137,6 @@ declare namespace LocalJSX {
     }
     interface HotelCartList {
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface ThemeToggle {
     }
 
@@ -186,11 +151,6 @@ declare namespace LocalJSX {
     interface HotelCartGroupAttributes {
         "hotelName": string;
     }
-    interface MyComponentAttributes {
-        "first": string;
-        "middle": string;
-        "last": string;
-    }
 
     interface IntrinsicElements {
         "app-button": Omit<AppButton, keyof AppButtonAttributes> & { [K in keyof AppButton & keyof AppButtonAttributes]?: AppButton[K] } & { [K in keyof AppButton & keyof AppButtonAttributes as `attr:${K}`]?: AppButtonAttributes[K] } & { [K in keyof AppButton & keyof AppButtonAttributes as `prop:${K}`]?: AppButton[K] };
@@ -198,7 +158,6 @@ declare namespace LocalJSX {
         "hotel-cart-drawer": HotelCartDrawer;
         "hotel-cart-group": Omit<HotelCartGroup, keyof HotelCartGroupAttributes> & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes]?: HotelCartGroup[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `attr:${K}`]?: HotelCartGroupAttributes[K] } & { [K in keyof HotelCartGroup & keyof HotelCartGroupAttributes as `prop:${K}`]?: HotelCartGroup[K] };
         "hotel-cart-list": HotelCartList;
-        "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
         "theme-toggle": ThemeToggle;
     }
 }
@@ -211,7 +170,6 @@ declare module "@stencil/core" {
             "hotel-cart-drawer": LocalJSX.IntrinsicElements["hotel-cart-drawer"] & JSXBase.HTMLAttributes<HTMLHotelCartDrawerElement>;
             "hotel-cart-group": LocalJSX.IntrinsicElements["hotel-cart-group"] & JSXBase.HTMLAttributes<HTMLHotelCartGroupElement>;
             "hotel-cart-list": LocalJSX.IntrinsicElements["hotel-cart-list"] & JSXBase.HTMLAttributes<HTMLHotelCartListElement>;
-            "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "theme-toggle": LocalJSX.IntrinsicElements["theme-toggle"] & JSXBase.HTMLAttributes<HTMLThemeToggleElement>;
         }
     }

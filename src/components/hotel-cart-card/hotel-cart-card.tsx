@@ -48,7 +48,11 @@ export class HotelCartCard {
   }
 
   handleDelete() {
-    if (this.item?.id) {
+    if (!this.item?.id) return;
+
+    const ok = window.confirm(`Delete this reservation for "${this.item.roomType}"?`);
+
+    if (ok) {
       this.itemDeleted.emit(this.item.id);
     }
   }
