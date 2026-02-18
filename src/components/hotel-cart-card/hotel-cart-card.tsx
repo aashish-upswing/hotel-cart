@@ -1,4 +1,4 @@
-import { Component, Prop, h, getAssetPath, State, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Prop, h, getAssetPath, State, Event, EventEmitter, Element, Host } from '@stencil/core';
 import flatpickr from 'flatpickr';
 import type { Instance as FPInstance } from 'flatpickr/dist/types/instance';
 import { RoomData } from '../../utils/data';
@@ -16,6 +16,7 @@ export class HotelCartCard {
   @Prop() isGrouped: boolean = false;
 
   @State() isEditing: boolean = false;
+  @State() showDeletePopover: boolean = false;
   @State() draft: RoomData;
 
   @Event() itemUpdated: EventEmitter<RoomData>;
@@ -49,12 +50,16 @@ export class HotelCartCard {
 
   handleDelete() {
     if (!this.item?.id) return;
+    this.showDeletePopover = !this.showDeletePopover;
+  }
 
-    const ok = window.confirm(`Delete this reservation for "${this.item.roomType}"?`);
+  confirmDelete() {
+    this.itemDeleted.emit(this.item.id);
+    this.showDeletePopover = false;
+  }
 
-    if (ok) {
-      this.itemDeleted.emit(this.item.id);
-    }
+  cancelDelete() {
+    this.showDeletePopover = false;
   }
 
   destroyPickers() {
@@ -127,101 +132,121 @@ export class HotelCartCard {
     if (!data) return null;
 
     return (
-      <div class={{ 'hotel-card': true, 'is-grouped': this.isGrouped }}>
-        <div class="card-main">
-          {!this.isGrouped && <img src={data.imageUrl} class="hotel-img" />}
+      <Host class={{ 'has-open-popover': this.showDeletePopover }}>
+        <div class={{ 'hotel-card': true, 'is-grouped': this.isGrouped }}>
+          <div class="card-main">
+            {!this.isGrouped && <img src={data.imageUrl} class="hotel-img" />}
 
-          <div class="hotel-info">
-            <div class="top-row">
-              <div>
-                {!this.isGrouped && <h3>{data.hotelName}</h3>}
-                <p class="subtitle">{data.roomType}</p>
+            <div class="hotel-info">
+              <div class="top-row">
+                <div>
+                  {!this.isGrouped && <h3>{data.hotelName}</h3>}
+                  <p class="subtitle">{data.roomType}</p>
 
-                <div class="tags">
-                  <app-button variant="tertiary">
-                    <img src={getAssetPath('./assets/person.svg')} />
-                    {data.adults}
-                  </app-button>
+                  <div class="tags">
+                    <app-button variant="tertiary">
+                      <img src={getAssetPath('./assets/person.svg')} />
+                      {data.adults}
+                    </app-button>
 
-                  <app-button variant="tertiary">
-                    <img src={getAssetPath('./assets/night.svg')} />
-                    {this.calculateNights(data.checkIn, data.checkOut)}
-                  </app-button>
+                    <app-button variant="tertiary">
+                      <img src={getAssetPath('./assets/night.svg')} />
+                      {this.calculateNights(data.checkIn, data.checkOut)}
+                    </app-button>
+                  </div>
+                </div>
+
+                <div class="price">
+                  ${data.price}
+                  <span>PER NIGHT</span>
                 </div>
               </div>
 
-              <div class="price">
-                ${data.price}
-                <span>PER NIGHT</span>
-              </div>
-            </div>
+              <div class="bottom-row">
+                <div class="date-row">
+                  <app-button variant="tertiary">
+                    <img src={getAssetPath('./assets/calendar.svg')} />
+                    {this.formatDate(data.checkIn)} – {this.formatDate(data.checkOut)}
+                  </app-button>
+                </div>
 
-            <div class="bottom-row">
-              <div class="date-row">
-                <app-button variant="tertiary">
-                  <img src={getAssetPath('./assets/calendar.svg')} />
-                  {this.formatDate(data.checkIn)} – {this.formatDate(data.checkOut)}
-                </app-button>
-              </div>
+                <div class="actions">
+                  <app-button variant={this.isEditing ? 'primary' : 'edit'} square onClick={() => (this.isEditing ? this.saveEdit() : this.toggleEdit())}>
+                    {this.isEditing ? <img class="save-icon" src={getAssetPath('assets/tick-circle.svg')} /> : <img src={getAssetPath('assets/edit.svg')} />}
+                  </app-button>
 
-              <div class="actions">
-                <app-button variant={this.isEditing ? 'primary' : 'edit'} square onClick={() => (this.isEditing ? this.saveEdit() : this.toggleEdit())}>
-                  {this.isEditing ? <img class="save-icon" src={getAssetPath('assets/tick-circle.svg')} /> : <img src={getAssetPath('assets/edit.svg')} />}
-                </app-button>
+                  <div class="delete-wrapper">
+                    <app-button variant="delete" square onClick={() => this.handleDelete()}>
+                      <img src={getAssetPath('assets/delete.svg')} />
+                    </app-button>
 
-                <app-button variant="delete" square onClick={() => this.handleDelete()}>
-                  <img src={getAssetPath('assets/delete.svg')} />
-                </app-button>
+                    {this.showDeletePopover && (
+                      <div class="delete-popover">
+                        <p>
+                          Are you sure you want to delete <strong>{data.roomType}</strong>?
+                        </p>
+                        <div class="popover-actions">
+                          <button class="cancel-btn" onClick={() => this.cancelDelete()}>
+                            Cancel
+                          </button>
+                          <button class="confirm-btn" onClick={() => this.confirmDelete()}>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          {this.isEditing && (
+            <div class="edit-section">
+              <div class="section">
+                <h3>
+                  <img src={getAssetPath('assets/calendar.svg')} />
+                  Travel Dates
+                </h3>
+
+                <div class="date-inputs">
+                  <div class="date-input-group">
+                    <label>CHECK-IN</label>
+                    <div class="input-wrapper">
+                      <img src={getAssetPath('assets/calendar-mini.svg')} />
+                      <span>{this.formatDate(this.draft.checkIn)}</span>
+                      <input ref={el => (this.checkInInput = el as HTMLInputElement)} />
+                    </div>
+                  </div>
+
+                  <div class="arrow">→</div>
+
+                  <div class="date-input-group">
+                    <label>CHECK-OUT</label>
+                    <div class="input-wrapper">
+                      <img src={getAssetPath('assets/calendar-mini.svg')} />
+                      <span>{this.formatDate(this.draft.checkOut)}</span>
+                      <input ref={el => (this.checkOutInput = el as HTMLInputElement)} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <h3>
+                  <img src={getAssetPath('assets/group.svg')} />
+                  Guests
+                </h3>
+                <div class="guest-counter">
+                  <button onClick={() => this.changeAdults(-1)}>−</button>
+                  <span>{this.draft.adults}</span>
+                  <button onClick={() => this.changeAdults(1)}>+</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-
-        {this.isEditing && (
-          <div class="edit-section">
-            <div class="section">
-              <h3>
-                <img src={getAssetPath('assets/calendar.svg')} />
-                Travel Dates
-              </h3>
-
-              <div class="date-inputs">
-                <div class="date-input-group">
-                  <label>CHECK-IN</label>
-                  <div class="input-wrapper">
-                    <img src={getAssetPath('assets/calendar-mini.svg')} />
-                    <span>{this.formatDate(this.draft.checkIn)}</span>
-                    <input ref={el => (this.checkInInput = el as HTMLInputElement)} />
-                  </div>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="date-input-group">
-                  <label>CHECK-OUT</label>
-                  <div class="input-wrapper">
-                    <img src={getAssetPath('assets/calendar-mini.svg')} />
-                    <span>{this.formatDate(this.draft.checkOut)}</span>
-                    <input ref={el => (this.checkOutInput = el as HTMLInputElement)} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3>
-                <img src={getAssetPath('assets/group.svg')} />
-                Guests
-              </h3>
-              <div class="guest-counter">
-                <button onClick={() => this.changeAdults(-1)}>−</button>
-                <span>{this.draft.adults}</span>
-                <button onClick={() => this.changeAdults(1)}>+</button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+      </Host>
     );
   }
 }

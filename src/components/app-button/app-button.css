@@ -63,12 +63,15 @@
 }
 
 .btn-tertiary {
-  background: var(--bg-color);
+  background: var(--bg-white);
   color: var(--text-primary);
   border-radius: var(--radius-md);
   padding: 6px 10px;
   font-size: 10px;
-  border: 1px solid var(--gray-300);
+}
+
+.btn-tertiary:hover {
+  box-shadow: var(--shadow-card);
 }
 
 .btn-square {

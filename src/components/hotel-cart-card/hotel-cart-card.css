@@ -10,6 +10,11 @@
   display: block;
 }
 
+:host(.has-open-popover) {
+  z-index: 10000 !important;
+  position: relative;
+}
+
 .hotel-card {
   width: 100%;
   max-width: 700px;
@@ -311,4 +316,83 @@ app-button img.save-icon {
   .price span {
     display: inline;
   }
+}
+
+/* Delete Popover Styles */
+.delete-wrapper {
+  position: relative;
+}
+
+.delete-popover {
+  position: absolute;
+  top: -350%;
+  right: 0;
+  width: 220px;
+  background: var(--bg-white);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  z-index: 100;
+  margin-top: 8px;
+  border: 1px solid var(--gray-200);
+  animation: popover-in 0.2s ease-out;
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delete-popover p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.delete-popover strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.popover-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.popover-actions button {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.cancel-btn {
+  background: var(--gray-100);
+  color: var(--text-secondary);
+}
+
+.cancel-btn:hover {
+  background: var(--gray-200);
+  color: var(--text-primary);
+}
+
+.confirm-btn {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.confirm-btn:hover {
+  background: var(--danger-bg-hover);
+  color: var(--danger-text-dark);
 }

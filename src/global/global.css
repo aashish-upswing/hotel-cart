@@ -73,6 +73,8 @@
     --accent-blue-hover: #a6ccff;
     --danger-bg: #ffd4d4;
     --danger-bg-hover: #ff8d8d;
+    --danger-text: #440000;
+    --danger-text-dark: #440000;
 
     --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -139,7 +141,7 @@
   --gray-300: #4b4b4b;
   --tag-bg: #404040;
 
-  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 14px rgb(0, 0, 0, 1);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
   --icon-filter: brightness(0) invert(1);
 
@@ -166,7 +168,7 @@
   --accent-blue: #eff6ff;
   --accent-blue-hover: #3b82f6;
 
-  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --icon-filter: brightness(0);
   --icon-filter-inverse: brightness(0) invert(1);
